@@ -20,6 +20,7 @@ install:
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
   - ansible-galaxy install AdopteUnOps.rancher-install-cli
+  - curl -L https://github.com/rancher/cli/releases/download/v0.6.4/rancher-linux-amd64-v0.6.4.tar.gz | tar zx --strip-components 2 -C /usr/local/bin"
 script:
   # Check the role/playbook's syntax.
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
