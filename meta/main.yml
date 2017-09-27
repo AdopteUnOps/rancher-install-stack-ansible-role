@@ -9,8 +9,7 @@ galaxy_info:
    - name: Ubuntu
 
   galaxy_tags:
-  - docker
-  - ubuntu
+  - rancher
 
 dependencies:
   - AdopteUnOps.rancher-install-cli

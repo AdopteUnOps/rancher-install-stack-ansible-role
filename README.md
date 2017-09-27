@@ -11,6 +11,7 @@ Role Variables
 --------------
 
 ```
+stack_name: "default"
 rancher_cli_stack_opts: "--pull --upgrade"
 rancher_master_url: "http://localhost:8080"
 rancher_project_name: "default"
