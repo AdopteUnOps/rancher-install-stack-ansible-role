@@ -1,6 +1,4 @@
 ---
-- include_vars: "{{ inventory_dir }}/group_vars/{{ rancher_project_name }}/apikey.yml"
-
 - debug: msg="Installing stack {{ stack_name }}"
 
 - name: create stacks folder
@@ -13,7 +11,11 @@
   template: src={{stack_name}}/rancher-compose.yml dest=stacks/{{stack_name}}/rancher-compose.yml
 
 - name: run rancher-compose upgrade
-  command: "rancher --debug --url {{rancher_master_url}} --access-key {{rancher_api_key_project_token}} --secret-key {{rancher_api_key_project_secret}} up -s {{ stack_name | quote}} -d {{rancher_cli_stack_opts}}"
+  environment:
+    RANCHER_URL: "{{rancher_master_url}}"
+    RANCHER_ACCESS_KEY: "{{ rancher_api_key }}"
+    RANCHER_SECRET_KEY: "{{ rancher_api_secret }}"
+  command: "rancher --debug up -s {{ stack_name | quote}} -d {{rancher_cli_stack_opts}}"
   args:
     chdir: "stacks/{{stack_name}}"
   register: stack_upgrade
@@ -22,7 +24,11 @@
 - debug: var=stack_upgrade
 
 - name: run rancher-compose confirm upgrade
-  command: "rancher --debug --url {{rancher_master_url}} --access-key {{rancher_api_key_project_token}} --secret-key {{rancher_api_key_project_secret}} up -s {{stack_name | quote}} -d  --confirm-upgrade"
+  environment:
+    RANCHER_URL: "{{rancher_master_url}}"
+    RANCHER_ACCESS_KEY: "{{ rancher_api_key }}"
+    RANCHER_SECRET_KEY: "{{ rancher_api_secret }}"
+  command: "rancher --debug up -s {{stack_name | quote}} -d  --confirm-upgrade"
   args:
     chdir: "stacks/{{stack_name}}"
   register: stack_confirm_upgrade

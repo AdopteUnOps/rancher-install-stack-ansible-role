@@ -1,5 +1,10 @@
 ---
 - hosts: localhost
   remote_user: root
+  vars:
+    rancher_api_key: "mykey"
+    rancher_api_secret: "mysecret"
+    rancher_project_name: "default"
+    rancher_project_id: 1234
   roles:
-    - docker-ansible-role
+    - rancher-install-stack-ansible-role
