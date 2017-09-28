@@ -4,6 +4,7 @@
   vars:
     rancher_api_key: "mykey"
     rancher_api_secret: "mysecret"
+    rancher_project_id: 1a5
     rancher_project_name: "Default"
     rancher_master_url: "http://172.17.0.1:8080"
   roles:
