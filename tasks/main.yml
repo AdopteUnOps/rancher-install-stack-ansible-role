@@ -15,6 +15,7 @@
     RANCHER_URL: "{{rancher_master_url}}"
     RANCHER_ACCESS_KEY: "{{ rancher_api_key }}"
     RANCHER_SECRET_KEY: "{{ rancher_api_secret }}"
+    RANCHER_ENVIRONMENT: "{{ rancher_project_name }}"
   command: "rancher --debug up -s {{ stack_name | quote}} -d {{rancher_cli_stack_opts}}"
   args:
     chdir: "stacks/{{stack_name}}"
@@ -28,6 +29,7 @@
     RANCHER_URL: "{{rancher_master_url}}"
     RANCHER_ACCESS_KEY: "{{ rancher_api_key }}"
     RANCHER_SECRET_KEY: "{{ rancher_api_secret }}"
+    RANCHER_ENVIRONMENT: "{{ rancher_project_name }}"
   command: "rancher --debug up -s {{stack_name | quote}} -d  --confirm-upgrade"
   args:
     chdir: "stacks/{{stack_name}}"
