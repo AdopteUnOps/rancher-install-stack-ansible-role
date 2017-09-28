@@ -5,6 +5,6 @@
     rancher_api_key: "mykey"
     rancher_api_secret: "mysecret"
     rancher_project_name: "Default"
-    stack_name: "janitor"
+    rancher_master_url: "http://172.17.0.1:8080"
   roles:
     - AdopteUnOps.rancher-add-host

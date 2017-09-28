@@ -18,6 +18,7 @@ services:
 
 before_install:
   - sudo apt-get update -qq
+  - sudo pip install docker-py==1.8.0
 
 install:
   # Install Ansible.
