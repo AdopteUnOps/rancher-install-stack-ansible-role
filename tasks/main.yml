@@ -4,13 +4,13 @@
 - name: create stacks folder
   file: path=stacks/{{stack_name}} state=directory mode=0700
 
-- name: copy docker-compose for stack
+- name: copy docker-compose for {{ stack_name }} stack
   template: src={{stack_name}}/docker-compose.yml dest=stacks/{{stack_name}}/docker-compose.yml
 
-- name: copy rancher-compose for stack
+- name: copy rancher-compose for {{ stack_name }} stack
   template: src={{stack_name}}/rancher-compose.yml dest=stacks/{{stack_name}}/rancher-compose.yml
 
-- name: run rancher-compose upgrade
+- name: run rancher-compose upgrade on {{ stack_name }}
   environment:
     RANCHER_URL: "{{rancher_master_url}}"
     RANCHER_ACCESS_KEY: "{{ rancher_api_key }}"
@@ -24,7 +24,7 @@
 
 - debug: var=stack_upgrade
 
-- name: run rancher-compose confirm upgrade
+- name: run rancher-compose confirm upgrade on {{ stack_name }}
   environment:
     RANCHER_URL: "{{rancher_master_url}}"
     RANCHER_ACCESS_KEY: "{{ rancher_api_key }}"
